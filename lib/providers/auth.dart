@@ -6,11 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shop_app/exceptions/auth_exception.dart';
 
+import '../data/store.dart';
+
 class Auth with ChangeNotifier {
   String? _token;
   String? _email;
   String? _userId;
   DateTime? _experyDate;
+  Timer? _logoutTime;
 
   bool get isAuth {
     final isValid = _experyDate?.isAfter(DateTime.now()) ?? false;
@@ -49,8 +52,20 @@ class Auth with ChangeNotifier {
       _token = body['idToken'];
       _email = body['email'];
       _userId = body['localId'];
-      _experyDate =
-          DateTime.now().add(Duration(seconds: int.parse(body['expiresIn'])));
+      _experyDate = DateTime.now().add(
+        Duration(
+          seconds: int.parse(body['expiresIn']),
+        ),
+      );
+
+      Store.saveMap('userData', {
+        'token': _token,
+        'email': _email,
+        'userId': userId,
+        'expiryDate': _experyDate!.toIso8601String(),
+      });
+
+      _autoLogout();
       notifyListeners();
     }
   }
@@ -61,5 +76,38 @@ class Auth with ChangeNotifier {
 
   Future<void> login(String email, String password) async {
     return _authenticate(email, password, 'signInWithPassword');
+  }
+
+  void logout() {
+    _token = null;
+    _email = null;
+    _userId = null;
+    _experyDate = null;
+
+    _clearLogoutTimer();
+    notifyListeners();
+  }
+
+  void _clearLogoutTimer() {
+    _logoutTime?.cancel();
+    _logoutTime = null;
+  }
+
+  void _autoLogout() {
+    final timeToLogout = _experyDate?.difference(DateTime.now()).inSeconds;
+    _logoutTime = Timer(Duration(seconds: timeToLogout ?? 0), logout);
+  }
+
+  Future<void> tryAutoLogin() async {
+    if (isAuth) return;
+    final userData = await Store.getMap('userData');
+    if (userData.isEmpty) return;
+    final expiryDate = DateTime(userData['expiryDate']);
+    if (expiryDate.isBefore(DateTime.now())) return;
+
+    _token = userData['token'];
+    _email = userData['email'];
+    _userId = userData['userId'];
+    _experyDate = expiryDate;
   }
 }
