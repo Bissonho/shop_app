@@ -26,13 +26,20 @@ class ShopApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => Auth()),
         ChangeNotifierProxyProvider<Auth, ProductList>(
-          create: (_) => ProductList('', []),
+          create: (_) => ProductList(),
           update: ((ctx, auth, previous) {
-            return ProductList(auth.token ?? '', previous?.itens ?? []);
+            return ProductList(
+                auth.token ?? '', previous?.itens ?? [], auth.userId ?? '');
           }),
         ),
+        ChangeNotifierProxyProvider<Auth, OrderList>(
+          create: (_) => OrderList(),
+          update: (context, auth, previous) {
+            return OrderList(
+                auth.token ?? '', previous?.items ?? [], auth.userId ?? '');
+          },
+        ),
         ChangeNotifierProvider(create: (_) => Cart()),
-        ChangeNotifierProvider(create: (_) => OrderList()),
       ],
       child: MaterialApp(
         routes: {
