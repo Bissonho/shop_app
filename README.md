@@ -1,4 +1,4 @@
-## Shop App Basic Flutter App Shop for Study
+## Basic Flutter App Shop for Study
 
 
 ## Features:
