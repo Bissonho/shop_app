@@ -1,15 +1,18 @@
-## Shop App
+## Basic Flutter App Shop for Study
 
-Criando aplicação Flutter baseado no curso "Aprenda Flutter da Cod3r".
-- Catálago de Produtos
-- Lista de Favoritos
-- Carrinho de compras
-- Adicionar e remover produtos
-- Formulário de Cadastro para novos produtos < Nome do produto, preço, URL da imagem do produto e descrição >.
+
+## Features:
+
+- Product Catalog
+- Favorites list
+- Shopping cart
+- Add and remove products
+- Product registration form
 - Login and Singup
+- auto logout
+- List of Orders relized
 
-
-## Principais conhecimentos aplicados:
+## Main applied knowledge:
 
 - Future Builder
 - Async Wait Function
@@ -19,8 +22,12 @@ Criando aplicação Flutter baseado no curso "Aprenda Flutter da Cod3r".
 - MultiProvider
 - ProxyProvider
 - Routes Nagivation
-- Http < POST, DELETE, GET, PATCH >
+- Http <POST, DELETE, GET, PATCH, PUT>
 - Json Decode and Encode
 - Form 
 - Form validation
 - FireBase Auth
+- Persistent storage - shared_preferences
+
+## Screens
+
