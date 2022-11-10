@@ -17,6 +17,22 @@ void main(List<String> args) {
   runApp(const ShopApp());
 }
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Home'),
+        ),
+      ),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
 class ShopApp extends StatelessWidget {
   const ShopApp({super.key});
 

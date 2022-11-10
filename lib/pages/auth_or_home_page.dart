@@ -17,8 +17,11 @@ class AuthOrHomePage extends StatelessWidget {
       future: auth.tryAutoLogin(),
       builder: ((context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return const Padding(
+            padding: EdgeInsets.all(20),
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         } else if (snapshot.error != null) {
           return const Center(

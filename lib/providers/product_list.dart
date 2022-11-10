@@ -151,8 +151,6 @@ class ProductList with ChangeNotifier {
           body: jsonEncode(product.isFavorite),
         );
         if (response.statusCode >= 400) {
-          print('User id$_userId');
-          print(response.body);
           return Future.value(false);
         }
         notifyListeners();

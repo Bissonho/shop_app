@@ -22,7 +22,8 @@ class Store {
   static Future<Map<String, dynamic>> getMap(String key) async {
     try {
       return jsonDecode(await getString(key));
-    } catch (_) {
+    } catch (value) {
+      print("Error" + value.toString());
       return {};
     }
   }
