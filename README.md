@@ -29,5 +29,20 @@
 - FireBase Auth
 - Persistent storage - shared_preferences
 
-## Screens
+## Login
+<p align="left">
+  <img width=20% height=20% src="src/readme/login.jpeg">
+</p>
 
+## Products
+<p align="left">
+  <img width=20% height=20% src="src/readme/products.jpeg">
+  <img width=20% height=20% src="src/readme/shop.jpeg">
+  <img width=20% height=20% src="src/readme/form_product.jpeg">
+</p>
+
+## Cart and Orders
+<p align="left">
+  <img width=20% height=20% src="src/readme/cart.jpeg">
+  <img width=20% height=20% src="src/readme/order_list.jpeg">
+</p>
