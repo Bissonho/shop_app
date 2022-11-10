@@ -20,7 +20,7 @@ class ProductItem extends StatelessWidget {
       ),
       title: Text(product.name),
       trailing: SizedBox(
-        width: 80,
+        width: 100,
         child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
           IconButton(
             onPressed: () {
